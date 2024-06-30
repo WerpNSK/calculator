@@ -1,27 +1,23 @@
 import java.util.Scanner;
 
 public class Main {
-    static int a, b;
+    private static int a, b;
 
     public static void main(String[] args) {
-        String inputString;
         Scanner str = new Scanner((System.in));
-        inputString = str.nextLine();
+        String inputString = str.nextLine();
         try {
             System.out.println(Output(ParserInputString(inputString)));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static String[] ParserInputString(String inputString) {
+    private static String[] ParserInputString(String inputString) {
         String[] parts = inputString.split(" ");
 
-        if (parts.length > 3)
-            throw new IllegalArgumentException("Two operands and one operator (+, -, /, *)");
-        else if (parts.length < 3)
-            throw new IllegalArgumentException("A string is not a mathematical operation");
+        if (parts.length > 3) throw new IllegalArgumentException("Two operands and one operator (+, -, /, *)");
+        else if (parts.length < 3) throw new IllegalArgumentException("A string is not a mathematical operation");
 
         try {
             a = Integer.parseInt(parts[0]);
@@ -36,7 +32,7 @@ public class Main {
         return parts;
     }
 
-    public static int Output(String[] parts) {
+    private static int Output(String[] parts) {
         switch (parts[1]) {
             case "+":
                 return a + b;
@@ -45,8 +41,7 @@ public class Main {
             case "*":
                 return a * b;
             case "/":
-                if (b == 0)
-                    throw new IllegalArgumentException("Division by zero");
+                if (b == 0) throw new IllegalArgumentException("Division by zero");
                 return a / b;
             default:
                 throw new IllegalArgumentException("Invalid operator");
